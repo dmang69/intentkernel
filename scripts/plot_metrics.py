@@ -38,7 +38,7 @@ def main() -> int:
 
     fig, ax = plt.subplots()
     ax.bar(labels, values)
-    ax.set_title("IntentKernel v0.3 Metrics")
+    ax.set_title("IntentKernel v0.4 Metrics")
     ax.set_ylabel("count")
     fig.autofmt_xdate(rotation=45)
 

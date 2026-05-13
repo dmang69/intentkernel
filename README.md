@@ -1,4 +1,4 @@
-# IntentKernel v0.3 — Unified Prototype
+# IntentKernel v0.4 — Unified Prototype
 
 IntentKernel is a research prototype demonstrating **intent-driven, capability-based secure operating system architecture** with post-quantum cryptography, quantum computing integration, WASM sandboxing, and ML-based intent classification.
 

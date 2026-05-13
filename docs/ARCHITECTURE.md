@@ -1,4 +1,4 @@
-# IntentKernel v0.3 Architecture
+# IntentKernel v0.4 Architecture
 
 IntentKernel is a user-space prototype demonstrating event-scoped capability enforcement with post-quantum cryptography and quantum workflow integration.
 
