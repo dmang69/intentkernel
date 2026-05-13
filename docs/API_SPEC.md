@@ -1,4 +1,4 @@
-# IntentKernel v0.3 API Specification
+# IntentKernel v0.4 API Specification
 
 This document summarizes the primary public APIs consumed by daemons and IK-MOS.
 
