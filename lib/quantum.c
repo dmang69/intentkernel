@@ -8,11 +8,6 @@ static qcomplex_t qcomplex_add(qcomplex_t a, qcomplex_t b) {
     return r;
 }
 
-static qcomplex_t qcomplex_sub(qcomplex_t a, qcomplex_t b) {
-    qcomplex_t r = { a.real - b.real, a.imag - b.imag };
-    return r;
-}
-
 static qcomplex_t qcomplex_mul(qcomplex_t a, qcomplex_t b) {
     qcomplex_t r = { a.real * b.real - a.imag * b.imag, a.real * b.imag + a.imag * b.real };
     return r;
@@ -132,7 +127,9 @@ int quantum_measure_all(const quantum_state_t *state, quantum_result_t *result) 
     }
     memset(result, 0, sizeof(*result));
     result->qubits = state->qubits;
-    for (size_t i = 0; i < state->state_len; i++) {
+    size_t max_counts = sizeof(result->counts) / sizeof(result->counts[0]);
+    size_t limit = state->state_len < max_counts ? state->state_len : max_counts;
+    for (size_t i = 0; i < limit; i++) {
         double prob = state->state[i].real * state->state[i].real + state->state[i].imag * state->state[i].imag;
         result->counts[i] = (u64)(prob * 10000.0);
     }
@@ -143,8 +140,9 @@ int quantum_run_circuit(const quantum_circuit_t *circuit, quantum_result_t *resu
     if (!circuit || !result) {
         return -1;
     }
+    int qubits = result->qubits > 4 ? 4 : result->qubits;
     quantum_state_t state;
-    if (quantum_state_init(&state, result->qubits) != 0) {
+    if (quantum_state_init(&state, qubits) != 0) {
         return -1;
     }
     for (size_t i = 0; i < circuit->count; i++) {

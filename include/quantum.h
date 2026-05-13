@@ -41,7 +41,7 @@ typedef struct {
 
 typedef struct {
     int qubits;
-    u64 counts[256];
+    u64 counts[16];
 } quantum_result_t;
 
 int quantum_state_init(quantum_state_t *state, int qubits);

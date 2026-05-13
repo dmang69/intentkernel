@@ -1,12 +1,12 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -O2 -I../../include
-LDFLAGS = -L../../lib -lintentkernel
+LDFLAGS = -L../../lib -lintentkernel -lm
 DAEMON = intentd
 
 all: $(DAEMON)
 
 $(DAEMON): main.c classifier.c
-$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 clean:
-rm -f $(DAEMON)
+	rm -f $(DAEMON)

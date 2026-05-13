@@ -17,7 +17,7 @@ DAEMON_DIRS = \
 	user/qjobd \
 	user/qproofd
 
-.PHONY: all lib daemons tests ikmos run clean
+.PHONY: all lib daemons tests test ikmos run clean
 
 all: lib daemons tests ikmos
 
@@ -30,12 +30,15 @@ $(LIB): $(LIB_OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 daemons:
-	@for dir in $(DAEMON_DIRS); do \
+	@set -e; for dir in $(DAEMON_DIRS); do \
 		$(MAKE) -C $$dir; \
 	done
 
 tests:
 	$(MAKE) -C tests
+
+test: tests
+	./tests/test_harness
 
 ikmos: ikmos/requirements.txt
 	python3 -m venv .venv
@@ -46,7 +49,7 @@ run:
 
 clean:
 	rm -f lib/*.o $(LIB)
-	@for dir in $(DAEMON_DIRS); do \
+	@set -e; for dir in $(DAEMON_DIRS); do \
 		$(MAKE) -C $$dir clean; \
 	done
 	$(MAKE) -C tests clean
