@@ -12,8 +12,9 @@ def _socket_path(channel: int) -> str:
 
 
 def _send_ipc(channel: int, msg_type: int, payload: bytes) -> None:
-    data = payload[:256].ljust(256, b"\x00")
-    packet = IPC_STRUCT.pack(msg_type, 0, int(time.time()), data, len(payload))
+    payload_bytes = payload[:256]
+    data = payload_bytes.ljust(256, b"\x00")
+    packet = IPC_STRUCT.pack(msg_type, 0, int(time.time()), data, len(payload_bytes))
     path = _socket_path(channel)
     if not os.path.exists(path):
         return

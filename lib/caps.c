@@ -96,7 +96,6 @@ int cap_revoke(cap_token_t *cap) {
     }
     size_t idx = cap->slot % CAP_TABLE_SIZE;
     cap_table[idx].revoked = 1;
-    cap_table[idx].token.expiry = 0;
     return 0;
 }
 
