@@ -2,6 +2,11 @@ import csv
 import sys
 from pathlib import Path
 
+try:
+    from ikmos import __version__ as IK_VERSION
+except Exception:
+    IK_VERSION = "0.4.0"
+
 
 def main() -> int:
     if len(sys.argv) < 2:
@@ -38,7 +43,7 @@ def main() -> int:
 
     fig, ax = plt.subplots()
     ax.bar(labels, values)
-    ax.set_title("IntentKernel v0.4 Metrics")
+    ax.set_title(f"IntentKernel v{IK_VERSION} Metrics")
     ax.set_ylabel("count")
     fig.autofmt_xdate(rotation=45)
 
