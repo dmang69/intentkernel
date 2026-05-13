@@ -31,5 +31,6 @@ start_daemon "$ROOT/user/quantumd/quantumd"
 start_daemon "$ROOT/user/qjobd/qjobd"
 start_daemon "$ROOT/user/qsimd/qsimd"
 start_daemon "$ROOT/user/qproofd/qproofd"
+start_daemon "$ROOT/user/migrated/migrated"
 
 python3 -m ikmos.main

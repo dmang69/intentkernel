@@ -13,6 +13,7 @@ IntentKernel is a research prototype demonstrating **intent-driven, capability-b
 - Quantum workflow pipeline (`quantumd` → `qjobd` → `qsimd` → `qproofd`).
 - IK-MOS Python shell for intent-driven interaction.
 - Adversarial test harness with CSV metrics output.
+- Migration architecture with manifest-based backup/restore tooling.
 
 ## Build
 
@@ -32,6 +33,7 @@ make run
 make test
 ./tests/test_harness
 python3 scripts/plot_metrics.py metrics.csv
+python3 scripts/security_report.py metrics.csv
 ```
 
 ## Repository Layout
@@ -51,6 +53,7 @@ docs/        Architecture + thesis templates
 
 - `docs/ARCHITECTURE.md` — Unified architecture overview
 - `docs/API_SPEC.md` — Core API specification
+- `docs/MIGRATION.md` — Migration engine and manifest format
 - `docs/THESIS_TEMPLATE.md` — Thesis appendix template
 
 ## License

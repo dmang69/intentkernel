@@ -12,5 +12,8 @@
 #include "cbor.h"
 #include "quantum.h"
 #include "ml.h"
+#include "manifest.h"
+#include "migrate.h"
+#include "policy.h"
 
 #endif

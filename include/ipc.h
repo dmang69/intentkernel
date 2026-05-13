@@ -14,6 +14,7 @@
 #define CH_QSIMD       8
 #define CH_QJOBD       9
 #define CH_QPROOFD     10
+#define CH_MIGRATED    11
 
 int ipc_init(void);
 int ipc_send(int channel, const ipc_msg_t *msg);

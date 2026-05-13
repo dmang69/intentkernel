@@ -18,6 +18,8 @@ def parse_command(text: str) -> IntentCommand:
         return IntentCommand(raw=text, intent="quantum", args=text[len("quantum"):].strip())
     if lowered.startswith("network"):
         return IntentCommand(raw=text, intent="network", args=text[len("network"):].strip())
+    if lowered.startswith("migrate"):
+        return IntentCommand(raw=text, intent="migrate", args=text[len("migrate"):].strip())
     if lowered.startswith("help"):
         return IntentCommand(raw=text, intent="help", args="")
     return IntentCommand(raw=text, intent="unknown", args=text)

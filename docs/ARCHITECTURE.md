@@ -8,6 +8,7 @@ IntentKernel is a user-space prototype demonstrating event-scoped capability enf
 - **Shared libraries** (`lib/`): IPC, capability issuance, PQC stubs, CBOR serialization, quantum sim, ML classification.
 - **Daemons** (`user/`): intent classification, capability issuance, lease broker, eventscope, WASM runtime, AI core, quantum pipeline.
 - **IK-MOS shell** (`ikmos/`): interactive meta-OS shell that issues intents and requests capabilities.
+- **Migration** (`lib/migrate.c`, `user/migrated/`): manifest-based backup/restore and capability reissue.
 
 ## Flow
 

@@ -15,6 +15,7 @@ typedef struct {
     u8 sig[CAP_SIG_LEN];
     u64 expiry;
     u32 type;
+    u32 flags;
 } cap_token_t;
 
 typedef u32 intent_id_t;
@@ -39,6 +40,7 @@ typedef u32 intent_id_t;
 #define CAP_REVOKABLE      0x0080
 #define CAP_QUANTUM_SUBMIT 0x0100
 #define CAP_ROOT           0xFFFF
+#define CAP_FLAG_MIGRATION_PERSIST 0x0001
 
 typedef struct {
     cap_token_t parent;
@@ -68,5 +70,7 @@ typedef struct {
 #define MSG_QUANTUM_RESULT   12
 #define MSG_JOB_ENQUEUE      13
 #define MSG_PROOF_SIGN       14
+#define MSG_MIGRATE_REQUEST  15
+#define MSG_MIGRATE_REPLY    16
 
 #endif

@@ -28,7 +28,7 @@ static size_t cap_signing_payload(const cap_token_t *cap, const char *context, u
     if (!cap || !out) {
         return 0;
     }
-    size_t needed = sizeof(cap->slot) + sizeof(cap->expiry) + sizeof(cap->type);
+    size_t needed = sizeof(cap->slot) + sizeof(cap->expiry) + sizeof(cap->type) + sizeof(cap->flags);
     size_t ctx_len = context ? strlen(context) : 0;
     if (out_len < needed + ctx_len) {
         return 0;
@@ -40,6 +40,8 @@ static size_t cap_signing_payload(const cap_token_t *cap, const char *context, u
     offset += sizeof(cap->expiry);
     memcpy(out + offset, &cap->type, sizeof(cap->type));
     offset += sizeof(cap->type);
+    memcpy(out + offset, &cap->flags, sizeof(cap->flags));
+    offset += sizeof(cap->flags);
     if (context && ctx_len) {
         memcpy(out + offset, context, ctx_len);
         offset += ctx_len;
@@ -48,12 +50,17 @@ static size_t cap_signing_payload(const cap_token_t *cap, const char *context, u
 }
 
 cap_token_t cap_issue(u32 cap_type, const char *context) {
+    return cap_issue_with_flags(cap_type, context, 0);
+}
+
+cap_token_t cap_issue_with_flags(u32 cap_type, const char *context, u32 flags) {
     cap_init_once();
 
     cap_token_t cap;
     memset(&cap, 0, sizeof(cap));
     cap.slot = cap_slot_counter++;
     cap.type = cap_type;
+    cap.flags = flags;
     cap.expiry = (u64)time(NULL) + CAP_DEFAULT_TTL;
 
     u8 payload[256];

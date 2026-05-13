@@ -1,12 +1,15 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -O2 -I../include
 LDFLAGS = -L../lib -lintentkernel -lm
-TARGET = test_harness
+TARGETS = test_harness test_migrate
 
-all: $(TARGET)
+all: $(TARGETS)
 
-$(TARGET): test_harness.c adversarial.c metrics.c
+test_harness: test_harness.c adversarial.c metrics.c
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
+
+test_migrate: test_migrate.c
 	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 clean:
-	rm -f $(TARGET) metrics.csv
+	rm -f $(TARGETS) metrics.csv

@@ -15,11 +15,14 @@ DAEMON_DIRS = \
 	user/quantumd \
 	user/qsimd \
 	user/qjobd \
-	user/qproofd
+	user/qproofd \
+	user/migrated
 
-.PHONY: all lib daemons tests test ikmos run clean
+TOOLS = tools/intentkernel-migrate
 
-all: lib daemons tests ikmos
+.PHONY: all lib daemons tests test ikmos run tools clean
+
+all: lib daemons tests ikmos tools
 
 lib: $(LIB)
 
@@ -39,6 +42,7 @@ tests:
 
 test: tests
 	./tests/test_harness
+	./tests/test_migrate
 
 ikmos: ikmos/requirements.txt
 	python3 -m venv .venv
@@ -47,10 +51,16 @@ ikmos: ikmos/requirements.txt
 run:
 	./scripts/run.sh
 
+tools: $(TOOLS)
+
+tools/intentkernel-migrate: tools/intentkernel-migrate.c $(LIB)
+	$(CC) $(CFLAGS) -o $@ $< -Llib -lintentkernel -lm
+
 clean:
 	rm -f lib/*.o $(LIB)
 	@set -e; for dir in $(DAEMON_DIRS); do \
 		$(MAKE) -C $$dir clean; \
 	done
 	$(MAKE) -C tests clean
+	rm -f $(TOOLS)
 	rm -rf .venv

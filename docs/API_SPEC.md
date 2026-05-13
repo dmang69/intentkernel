@@ -26,3 +26,16 @@ This document summarizes the primary public APIs consumed by daemons and IK-MOS.
 - `quantum_state_init()` creates a 2–8 qubit statevector.
 - `quantum_apply_gate()` applies one gate operation.
 - `quantum_measure_all()` produces a histogram of outcomes.
+
+## Migration
+
+- `migrate_backup()` writes a migration manifest to disk.
+- `migrate_restore()` restores a manifest and reissues capability tokens.
+- `migrate_validate()` enforces policy checks on manifests.
+
+## Manifests & Policy
+
+- `manifest_parse()` parses an app capability manifest.
+- `manifest_validate()` ensures version compatibility.
+- `manifest_to_caps()` converts manifest grants into tokens.
+- `policy_validate_app()` rejects forbidden app categories.

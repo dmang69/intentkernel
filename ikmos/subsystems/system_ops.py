@@ -1,6 +1,6 @@
 
 def help_text(_: str = "") -> str:
-    return "Available commands: read, write, network, quantum, help"
+    return "Available commands: read, write, network, quantum, migrate, help"
 
 
 def unknown(cmd: str) -> str:

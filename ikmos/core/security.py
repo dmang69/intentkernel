@@ -5,6 +5,8 @@ import time
 from ikmos.core.config import CONFIG
 
 IPC_STRUCT = struct.Struct("<IQQ256sI")
+CH_MIGRATED = 11
+MSG_MIGRATE_REQUEST = 15
 
 
 def _socket_path(channel: int) -> str:
@@ -32,3 +34,8 @@ def request_capability(cap_type: str, context: str) -> None:
 
 def classify_intent(text: str) -> None:
     _send_ipc(2, 4, text.encode())
+
+
+def request_migration(action: str, payload: str) -> None:
+    request = f"{action} {payload}".strip()
+    _send_ipc(CH_MIGRATED, MSG_MIGRATE_REQUEST, request.encode())
