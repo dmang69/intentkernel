@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it."
+title: "IntentKernel"
+version: 0.3.0
+date-released: 2026-05-13
+license: Apache-2.0
+authors:
+  - family-names: "Owings"
+    given-names: "Daniel Kirk"
+repository-code: "https://github.com/dmang69/intentkernel"
